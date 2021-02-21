@@ -21,15 +21,17 @@ services:
     image: mariadb:latest
     container_name: my-db
     restart: unless-stopped
+    ports:
+      - 3306:3306
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
       SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      SERVICE_NAME: mariadb
     volumes:
-      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - ./docker-compose/mariadb:/docker-entrypoint-initdb.d
     networks:
       - my-network
 
